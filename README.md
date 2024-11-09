@@ -40,7 +40,7 @@ First, the application continues to work even if the number of requests dramatic
         or
         helm install pgbouncer pgbouncer/  # for the first time you need to install this, after that on every changes on values.yaml you need to apply the changes using "helm upgrade" command.
 
-- once it deploy, go inside the pgbouncer and verify the postgres cred that pgbouncer uses to connect with postgres db.
+- once it deploy, go inside the pgbouncer pod and verify the postgres cred that pgbouncer uses to connect with postgres db. you have set this in pgbouncer helm chart.
 
           cat /etc/pgbouncer/pgbouncer.in   and see database section init.
 
