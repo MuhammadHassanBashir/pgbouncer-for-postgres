@@ -85,5 +85,10 @@ I ran sample pod with below manifest, and install pgsql package init, and connec
 
 remember: i have added add no password is require to connect pgbouncer, i can successfully connect with pgboucner pod.. if password is require then you should give password for pgbouncer here for accessing the pod.. password for pgbouncer you could set for pgbouncer in pgbouncer helm chart value.yaml under config section.
 
+For application how need to access pgbouncer
+--------------------------------------------
+
+you need to give pgbouncer connection string to application, and store this secret inside the secret manager and ask you application to get this string from secret manager. so application pod can access pgbouncer pod and pgbouncer make this connection with postgresql database.
+
   
     
