@@ -46,7 +46,7 @@ First, the application continues to work even if the number of requests dramatic
 
 -  now connect with pgbouncer inside the pgbouncer pod and verify that pgbouncer is connected with postgres db or not..
   
-           psql -h localhost -p 5432 -U pg -d pgbouncer         # you can set the user for pgbouncer in pgbouncer values.yaml under config section but -d should be pgbouncer, i have not add this in my pgbouncer helm cart under values.yaml.
+           psql -h localhost -p 5432 -U pg -d pgbouncer         # you can set the user for pgbouncer in pgbouncer helm chart values.yaml under config section but -d should be pgbouncer, i have not add this in my pgbouncer helm cart under values.yaml.
 
 - once get connect with pgbouncer, use below command to verify the pgbouncer connection with postgres database.
 
