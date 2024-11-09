@@ -36,27 +36,27 @@ First, the application continues to work even if the number of requests dramatic
 
 -  First clone the helm chart availabe in the repo to your local system, and connect the GKE/EKS cluster and use the below command for installing the pgbouncer helm chart in kubernetes cluster.
 
-    helm install <revision-no> <chart-name>
-    or
-    helm install pgbouncer pgbouncer/  # for the first time you need to install this, after that on every changes on values.yaml you need to apply the changes using "helm upgrade" command.
+        helm install <revision-no> <chart-name>
+        or
+        helm install pgbouncer pgbouncer/  # for the first time you need to install this, after that on every changes on values.yaml you need to apply the changes using "helm upgrade" command.
 
 - once it deploy, go inside the pgbouncer and verify the postgres cred that pgbouncer uses to connect with postgres db.
 
-  cat /etc/pgbouncer/pgbouncer.in   and see database section init.
+          cat /etc/pgbouncer/pgbouncer.in   and see database section init.
 
 -  now connect with pgbouncer inside the pgbouncer pod and verify that pgbouncer is connected with postgres db or not..
   
-   psql -h localhost -p 5432 -U pg -d pgbouncer         # you can set the user for pgbouncer in pgbouncer values.yaml under config section but -d should be pgbouncer, i have not add this in my pgbouncer helm cart under values.yaml.
+           psql -h localhost -p 5432 -U pg -d pgbouncer         # you can set the user for pgbouncer in pgbouncer values.yaml under config section but -d should be pgbouncer, i have not add this in my pgbouncer helm cart under values.yaml.
 
 - once get connect with pgbouncer, use below command to verify the pgbouncer connection with postgres database.
 
-    SHOW SERVERS;    # It will give you the detail information, like which pgbouncer pod having which ip is connected with postgres database. which have what ip..
-    SHOW POOLS;     # it will give you the detail information of client how is connected with pgbouncer.
-
-    cl_active: it will give you the infomration that how mny client connect with pgbouncer
-
-    sv_active: it will give you the information like pgbouncer is successfully connected with postgres db..
-
+        SHOW SERVERS;    # It will give you the detail information, like which pgbouncer pod having which ip is connected with postgres database. which have what ip..
+        SHOW POOLS;     # it will give you the detail information of client how is connected with pgbouncer.
+    
+        cl_active: it will give you the infomration that how mny client connect with pgbouncer
+    
+        sv_active: it will give you the information like pgbouncer is successfully connected with postgres db..
+    
 
   
     
