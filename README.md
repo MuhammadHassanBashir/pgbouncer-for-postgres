@@ -56,7 +56,34 @@ First, the application continues to work even if the number of requests dramatic
         cl_active: it will give you the infomration that how mny client connect with pgbouncer
     
         sv_active: it will give you the information like pgbouncer is successfully connected with postgres db..
+
+## For connecting other pods with pgbouncer service, so pod will get connect with postgrs db though pgbouncer.
+
+I ran sample pod with below manifest, and install pgsql package init, and connect pod with pgbouncer, so pg bouncer make this pod connection to postgres db  
+
+        apiVersion: v1
+        kind: Pod
+        metadata:
+          name: pgbouncer-test
+          namespace: default
+        spec:
+          containers:
+            - name: test-container
+              image: alpine:latest
+              command: ["sh", "-c", "sleep 3600"]
+              # Install network tools like curl and netcat
+              args:
+                - >
+                  apk add --no-cache curl netcat &&
+                  sleep 3600
+ 
     
+        deploy this pod and go inside the pod and use psql command for connecting with this pod with pgbouncer..
+
+        add postgresql-client: apk add postgresql-client 
+        use command to connect with pgbouncer pod: psql -h pgbouncer.default.svc.cluster.local -U pg -d pgbouncer -p 5432
+
+remember: i have added add no password is require to connect pgbouncer, i can successfully connect with pgboucner pod.. if password is require then you should give password for pgbouncer here for accessing the pod.. password for pgbouncer you could set for pgbouncer in pgbouncer helm chart value.yaml under config section.
 
   
     
